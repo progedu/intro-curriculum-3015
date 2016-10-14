@@ -6,7 +6,9 @@ const survey = new Map(); // key:URL value:アンケート項目データのオ�
 
 survey.set('/enquetes/yaki-shabu', {w1:'焼肉', w2:'しゃぶしゃぶ'});
 survey.set('/enquetes/rice-bread', {w1:'ごはん', w2:'パン'});
-survey.set('/enquetes/sushi-pizza', {w1:'すし', w2:'ピザ'});
+survey.set('/enquetes/sushi-pizza', {w1:'寿司', w2:'ピザ'});
+survey.set('/enquetes/udon-soba', {w1:'うどん', w2:'そば'});
+survey.set('/enquetes/nanda-kore', {w1:'ゼッポレ・ディ・サンジュゼッペ', w2:'ヴュルストヒェン・イム・シュラーフロック '});
 // survey.set('/enquetes/unko-curry', {w1:'ウ◯コ味のカレー', w2:'カレー味のウ◯コ'});
 
 
@@ -21,16 +23,16 @@ const server = http.createServer((req, res) => {
   switch (req.method) {
     case 'GET':
 
-		try {
-		const question = survey.get(req.url); // URLをキーにアンケート項目の単語を取得。
-		res.write(jade.renderFile('./form.jade', {
-					path: req.url,
-					firstItem: question.w1 ,
-					secondItem: question.w2
-				}));
-} catch (err){} 
-
-      res.end();
+      try {
+        const question = survey.get(req.url); // URLをキーにアンケート項目の単語を取得。
+        res.write(jade.renderFile('./form.jade', {
+          path: req.url,
+          firstItem: question.w1,
+          secondItem: question.w2
+        }));
+      } catch (err) {
+        res.end();
+      }
       break;
     case 'POST':
       req.on('data', (data) => {
