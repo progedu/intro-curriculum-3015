@@ -8,8 +8,14 @@ html(lang="jp")
     form(method="post", action="#{path}")
       span 名前: 
       input(type="text", name="name")
+      button(type="submit") 投稿
+      br
+      br
+      iframe(frameborder="0" height="176" scrolling="no" src="#{firstURL}" width="312")
       input(type="radio", name="favorite", value="#{firstItem}")
       span #{firstItem} 
+      br
+      br
+      iframe(frameborder="0" height="176" scrolling="no" src="#{secondURL}" width="312")
       input(type="radio", name="favorite", value="#{secondItem}")
       span #{secondItem} 
-      button(type="submit") 投稿
