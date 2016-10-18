@@ -29,7 +29,7 @@ const server = http.createServer((req, res) => {
           firstItem: '寿司',
           secondItem: 'ピザ'
         }));
-            } else if (req.url === '/enquetes/udon-soba') {
+      } else if (req.url === '/enquetes/udon-soba') {
         res.write(jade.renderFile('./form.jade', {
           path: req.url,
           firstItem: 'うどん',
