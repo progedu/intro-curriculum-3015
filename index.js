@@ -15,15 +15,24 @@ const server = http.createServer((req, res) => {
         res.write(jade.renderFile('./form.jade', {
           path: req.url,
           firstItem: '焼き肉',
-          secondItem: 'しゃぶしゃぶ'
+          secondItem: 'しゃぶしゃぶ',
+          thirdItem: '牛丼'
         }));
       } else if (req.url === '/enquetes/rice-bread') {
         res.write(jade.renderFile('./form.jade', {
           path: req.url,
           firstItem: 'ごはん',
-          secondItem: 'パン'
+          secondItem: 'パン',
+          thirdItem: 'パスタ'
         }));
-      }
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(jade.renderFile('./form.jade', {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピッツァ',
+          thirdItem: 'おでん'
+        }));
+      } 
       res.end();
       break;
     case 'POST':
