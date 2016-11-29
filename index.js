@@ -23,6 +23,24 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(jade.renderFile('./form.jade', {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピザ'
+        }));
+      } else if (req.url === '/enquetes/eye-ear') {
+        res.write(jade.renderFile('./form.jade', {
+          path: req.url,
+          firstItem: '目くそ',
+          secondItem: '鼻くそ'
+        }));
+      } else if (req.url === '/enquetes/uho-niceguy') {
+        res.write(jade.renderFile('./form.jade', {
+          path: req.url,
+          firstItem: 'ウホッ',
+          secondItem: 'いい男'
+        }));
       }
       res.end();
       break;
