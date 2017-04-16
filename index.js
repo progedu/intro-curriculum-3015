@@ -22,15 +22,38 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(jade.renderFile('./form.jade', {
+          path: req.url,
+          firstItem: 'お寿司',
+          secondItem: 'ピッツァ'
+        }));
+      } else {
+        res.write('<h1>そんなページないです＞＜</h1>');
       }
       res.end();
       break;
     case 'POST':
-      req.on('data', (data) => {
-        const decoded = decodeURIComponent(data);
+      req.on('data', (q) => {
+        const decoded = decodeURIComponent(q);
+        let tmp1 = decoded.split('&');
+        let data = {};
+        for (let i = 0; i < tmp1.length; i++) {
+          let tmp2 = tmp1[i].split('=');
+          data[tmp2[0]] = tmp2[1];
+        }
         console.info('[' + now + '] 投稿: ' + decoded);
-        res.write('<!DOCTYPE html><html lang="jp"><head><meta charset="utf-8"></head><body><h1>' +
-          decoded + 'が投稿されました</h1></body></html>');
+        var html = `
+          <!DOCTYPE html>
+          <html lang="jp">
+            <head>
+              <meta charset="utf-8">
+            </head>
+            <body>
+                <h1>${data["name"]}さんは、${data["favorite"]}が食べたいようです</h1>
+            </body>
+          </html>`;
+        res.write(html);
         res.end();
       });
       break;
