@@ -10,7 +10,7 @@ const server = http.createServer((req, res) => {
 
   switch (req.method) {
     case 'GET':
-      if (req.url === '/enquetes/yaki-shabu') {
+    /*  if (req.url === '/enquetes/yaki-shabu') {
         res.write(jade.renderFile('./form.jade', {
           path: req.url,
           firstItem: '焼き肉',
@@ -22,9 +22,42 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
-      }
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(jade.renderFile('./form.jade',{
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピザ'
+        }));
+      }*/
+
+    switch (req.url) {
+      case '/enquetes/yaki-shabu':
+          res.write(jade.renderFile('./form.jade', {
+            path: req.url,
+            firstItem: '焼き肉',
+            secondItem: 'しゃぶしゃぶ'
+          }));
+          break;
+      case '/enquetes/rice-bread':
+          res.write(jade.renderFile('./form.jade', {
+            path: req.url,
+            firstItem: 'ごはん',
+            secondItem: 'パン'
+          }));
+          break;
+      case '/enquetes/sushi-pizza':
+          res.write(jade.renderFile('./form.jade',{
+            path: req.url,
+            firstItem: '寿司',
+            secondItem: 'ピザ'
+          }));
+          break;
+      default:
+          res.write('<h1>質問が存在しません</h1>');
+        }
       res.end();
       break;
+      
     case 'POST':
       let body = [];
       req.on('data', (chunk) => {
