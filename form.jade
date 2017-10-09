@@ -4,12 +4,15 @@ html(lang="jp")
     meta(charset="UTF-8")
     title アンケート
   body
-    h1 どちらが食べたいですか？
+    h1 どちらを食べたいですか？
     form(method="post", action="#{path}")
-      span 名前: 
-      input(type="text", name="name")
+      
       input(type="radio", name="favorite", value="#{firstItem}")
       span #{firstItem} 
       input(type="radio", name="favorite", value="#{secondItem}")
       span #{secondItem} 
+      br
+      span 名前: 
+      input(type="text", name="name")
+      br
       button(type="submit") 投稿
