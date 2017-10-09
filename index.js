@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
           secondItem: 'パン'
         }));
       } else if (req.url === '/enquetes/sushi-pizza') {
-        res.write(jade.renderFile('./form.jade',{
+        res.write(jade.renderFile('./form.jade', {
           path: req.url,
           firstItem: '寿司',
           secondItem: 'ピザ'
@@ -37,18 +37,17 @@ const server = http.createServer((req, res) => {
         const decoded = decodeURIComponent(data);
         console.info('[' + now + '] 投稿: ' + decoded);
         res.write('<!DOCTYPE html><html lang="jp"><head><meta charset="utf-8"></head><body><h1>'
-         + decoded + 'が投稿されました</h1><ol>' +
-         '<li><a href="http://localhost:8000/enquetes/yaki-shabu">yaki-shabu</a></li>' +
-         '<li><a href="http://localhost:8000/enquetes/rice-bread">rice-bread</a></li>' +
-         '<li><a href="http://localhost:8000/enquetes/sushi-pizza">sushi-pizza</a></li>' +
-         '</ol></body></html>');
+          + decoded + '派' +'が投稿されました</h1><ol>' +
+          '<li><a href="http://localhost:8000/enquetes/yaki-shabu">yaki-shabu</a></li>' +
+          '<li><a href="http://localhost:8000/enquetes/rice-bread">rice-bread</a></li>' +
+          '<li><a href="http://localhost:8000/enquetes/sushi-pizza">sushi-pizza</a></li>' +
+          '</ol></body></html>');
         res.end();
       });
       break;
     default:
       break;
   }
-
 }).on('error', (e) => {
   console.error('[' + new Date() + '] Server Error', e);
 }).on('clientError', (e) => {
