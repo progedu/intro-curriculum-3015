@@ -28,6 +28,12 @@ const server = http.createServer((req, res) => {
           firstItem: '寿司',
           secondItem: 'ピザ'
         }));
+      } else if (req.url === '/enquetes/apple-godzilla') {
+        res.write(jade.renderFile('./form.jade', {
+          path: req.url,
+          firstItem: 'りんご',
+          secondItem: 'ゴジラ'
+        }));
       }
       res.end();
       break;
