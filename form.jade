@@ -1,8 +1,9 @@
 doctype html
-html(lang="jp")
+html(lang="ja")
   head
     meta(charset="UTF-8")
     title アンケート
+    style body{background-color:#ff8020}
   body
     h1 どちらが食べたいですか？
     form(method="post", action="#{path}")
@@ -12,4 +13,6 @@ html(lang="jp")
       span #{firstItem} 
       input(type="radio", name="favorite", value="#{secondItem}")
       span #{secondItem} 
+      
       button(type="submit") 投稿
+      
