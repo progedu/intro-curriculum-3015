@@ -23,14 +23,14 @@ const server = http.createServer((req, res) => {
           secondItem: 'パン'
         }));
       } else if (req.url === '/enquetes/sushi-pizza') {
-				res.write(jade.renderFile('./form.jade', {
-					path: req.url,
-					firstItem: '寿司',
-					secondItem: 'ピザ'
-				}))
-			} else {
-				res.write(jade.renderFile('./notFound.jade', {}));
-			}
+        res.write(jade.renderFile('./form.jade', {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピザ'
+        }))
+      } else {
+        res.write(jade.renderFile('./notFound.jade', {}));
+      }
       res.end();
       break;
     case 'POST':
