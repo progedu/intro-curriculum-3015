@@ -22,6 +22,12 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
+      } else if (req.url === '/enquetes/hamlet') {
+        res.write(jade.renderFile('./form.jade', {
+          path: req.url,
+          firstItem:  'トゥ・ビィー To Be',
+          secondItem: 'ノット・トゥ・ビィー Not To Be （そうじゃなくて生きろ～～～～）'
+        }));
       }
       res.end();
       break;
