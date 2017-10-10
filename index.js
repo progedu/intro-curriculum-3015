@@ -22,6 +22,14 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
+// /enquetes/sushi-pizza というパスにアクセスした時に、
+// 寿司とピザのどちらが食べたいか投稿できるアンケートを表示
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(jade.renderFile('./form.jade', {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピザ'
+        }));
       }
       res.end();
       break;
