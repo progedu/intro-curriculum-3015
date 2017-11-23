@@ -10,19 +10,26 @@ const server = http.createServer((req, res) => {
 
   switch (req.method) {
     case 'GET':
-      if (req.url === '/enquetes/yaki-shabu') {
-        res.write(jade.renderFile('./form.jade', {
-          path: req.url,
-          firstItem: '焼き肉',
-          secondItem: 'しゃぶしゃぶ'
-        }));
-      } else if (req.url === '/enquetes/rice-bread') {
-        res.write(jade.renderFile('./form.jade', {
-          path: req.url,
-          firstItem: 'ごはん',
-          secondItem: 'パン'
-        }));
-      }
+    console.log(req.url);
+			if(req.url === '/enquetes/yaki-shabu'){
+      	res.write(jade.renderFile('./form.jade', {
+					path:req.url,
+					firstItem:'焼肉',
+					secondItem:'しゃぶしゃぶ'
+				}));
+			} else if(req.url === '/enquetes/rice-bread'){
+				res.write(jade.renderFile('./form.jade', {
+					path:req.url,
+					firstItem:'ごはん',
+					secondItem:'パン'
+				}));
+			} else if(req.url === '/enquetes/sushi-pizza'){
+				res.write(jade.renderFile('./form.jade', {
+					path:req.url,
+					firstItem:'お寿司',
+					secondItem:'ピザ'
+				}));
+			}
       res.end();
       break;
     case 'POST':
@@ -33,8 +40,8 @@ const server = http.createServer((req, res) => {
         body = Buffer.concat(body).toString();
         const decoded = decodeURIComponent(body);
         console.info('[' + now + '] 投稿: ' + decoded);
-        res.write('<!DOCTYPE html><html lang="jp"><head><meta charset="utf-8"></head><body><h1>' +
-          decoded + 'が投稿されました</h1></body></html>');
+        res.write('' +
+          decoded + 'が投稿されました');
         res.end();
       });
       break;
