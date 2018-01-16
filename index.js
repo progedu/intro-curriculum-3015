@@ -10,21 +10,64 @@ const server = http.createServer((req, res) => {
 
   switch (req.method) {
     case 'GET':
-      if (req.url === '/enquetes/yaki-shabu') {
-        res.write(jade.renderFile('./form.jade', {
-          path: req.url,
-          firstItem: '焼き肉',
-          secondItem: 'しゃぶしゃぶ'
-        }));
-      } else if (req.url === '/enquetes/rice-bread') {
-        res.write(jade.renderFile('./form.jade', {
-          path: req.url,
-          firstItem: 'ごはん',
-          secondItem: 'パン'
-        }));
+      // if (req.url === '/enquetes/yaki-shabu') {
+      //   res.write(jade.renderFile('./form.jade', {
+      //     path: req.url,
+      //     firstItem: '焼き肉',
+      //     secondItem: 'しゃぶしゃぶ'
+      //   }));
+      // } else if (req.url === '/enquetes/rice-bread') {
+      //   res.write(jade.renderFile('./form.jade', {
+      //     path: req.url,
+      //     firstItem: 'ごはん',
+      //     secondItem: 'パン'
+      //   }));
+      // } else if (req.url === '/enquetes/sushi-pizza') {
+      //   res.write(jade.renderFile('./form.jade', {
+      //     path: req.url,
+      //     firstItem: '寿司',
+      //     secondItem: 'ピザ'
+      //   }));
+      // }
+      // res.end();
+      // break;
+      switch (req.url) {
+        case '/enquetes/yaki-shabu':
+          res.write(jade.renderFile('./form.jade',{
+            path: req.url,
+            firstItem: '焼き肉',
+            secondItem: 'しゃぶしゃぶ',
+          }));
+          res.end();
+          break;
+        case '/enquetes/rice-bread':
+          res.write(jade.renderFile('./form.jade',{
+            path: req.url,
+            firstItem: 'ごはん',
+            secondItem: 'パン'
+          }));
+          res.end();
+          break;
+        case '/enquetes/sushi-pizza':
+          res.write(jade.renderFile('./form.jade',{
+            path: req.url,
+            firstItem: 'すし',
+            secondItem: 'ピザ'
+          }));
+          res.end();
+          break;
+        case '/enquetes/tyahan-tenshin':
+          res.write(jade.renderFile('./form.jade',{
+            path: req.url,
+            firstItem: 'チャーハン',
+            secondItem: '天津飯'
+          }));
+          res.end();
+          break;
+        default:
+          break;
       }
-      res.end();
-      break;
+      
     case 'POST':
       let body = [];
       req.on('data', (chunk) => {
