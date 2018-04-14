@@ -10,11 +10,25 @@ const server = http.createServer((req, res) => {
 
   switch (req.method) {
     case 'GET':
-      if (req.url === '/enquetes/yaki-shabu') {
+      let urls = ['/yaki-shabu', '/rice-bread', '/sushi-pizza'];
+      let firstItems = ['焼き肉', 'ごはん', '寿司'];
+      let secondItems = ['しゃぶしゃぶ', 'パン', 'ピザ'];
+
+      for (let i = 0; i < urls.length; i++) {
+        if (req.url === '/enquetes' + urls[i]) {
+          res.write(jade.renderFile('./form.jade', {
+            path: req.url,
+            firstItem: firstItems[i],
+            secondItem: secondItems[i]
+          }));
+          break;
+        }
+      }
+      /* else if (req.url === '/enquetes/rice-bread') {
         res.write(jade.renderFile('./form.jade', {
           path: req.url,
-          firstItem: '焼き肉',
-          secondItem: 'しゃぶしゃぶ'
+          firstItem: 'ごはん',
+          secondItem: 'パン'
         }));
       } else if (req.url === '/enquetes/rice-bread') {
         res.write(jade.renderFile('./form.jade', {
@@ -22,7 +36,7 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
-      }
+      } */
       res.end();
       break;
     case 'POST':
@@ -41,7 +55,6 @@ const server = http.createServer((req, res) => {
     default:
       break;
   }
-
 }).on('error', (e) => {
   console.error('[' + new Date() + '] Server Error', e);
 }).on('clientError', (e) => {
