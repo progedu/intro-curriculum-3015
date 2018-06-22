@@ -26,7 +26,7 @@ const server = http.createServer((req, res) => {
         res.write(jade.renderFile('./form.jade', {
           path: req.url,
           firstItem: '寿司',
-          seconditem: 'ピザ'
+          secondItem: 'ピザ'
         }));
       }
       res.end();
