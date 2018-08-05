@@ -1,4 +1,5 @@
 'use strict';
+
 const http = require('http');
 const jade = require('jade');
 const server = http.createServer((req, res) => {
@@ -22,9 +23,16 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(jade.renderFile('./form.jade', {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピザ'
+        }));
       }
       res.end();
       break;
+
     case 'POST':
       let body = [];
       req.on('data', (chunk) => {
@@ -38,6 +46,7 @@ const server = http.createServer((req, res) => {
         res.end();
       });
       break;
+
     default:
       break;
   }
