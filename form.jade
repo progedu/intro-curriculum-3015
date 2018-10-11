@@ -6,10 +6,10 @@ html(lang="jp")
   body
     h1 どちらが食べたいですか？
     form(method="post", action="#{path}")
-      span 名前: 
-      input(type="text", name="name")
-      input(type="radio", name="favorite", value="#{firstItem}")
-      span #{firstItem} 
-      input(type="radio", name="favorite", value="#{secondItem}")
-      span #{secondItem} 
+      label(for="name") 名前: 
+      input(type="text", name="name", id="name", placeholder="名前を入力して下さい")
+      input(type="radio", name="favorite", value="#{firstItem}", id="favorite1")
+      label(for="favorite1") #{firstItem} 
+      input(type="radio", name="favorite", value="#{secondItem}", id="favorite2")
+      label(for="favorite2") #{secondItem} 
       button(type="submit") 投稿
