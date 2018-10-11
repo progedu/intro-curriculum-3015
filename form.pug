@@ -4,12 +4,19 @@ html(lang="ja")
     meta(charset="UTF-8")
     title アンケート
   body
-    h1 どちらが食べたいですか？
+    h1 #{firstItem}と#{secondItem}、どちらが食べたいですか？
     form(method="post" action=path)
       span 名前: 
       input(type="text" name="name")
-      input(type="radio" name="favorite" value=firstItem)
-      span #{firstItem} 
-      input(type="radio" name="favorite" value=secondItem)
-      span #{secondItem} 
+      label
+        input(type="radio" name="favorite" value=firstItem required)
+        span #{firstItem} 
+      label
+        input(type="radio" name="favorite" value=secondItem)
+        span #{secondItem} 
+      span="　"
       button(type="submit") 投稿
+    br
+    a(href=anotherAnquetePath) 別のアンケートへ
+    br
+    a(href="../") メニューに戻る
