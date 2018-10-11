@@ -10,17 +10,31 @@ const server = http.createServer((req, res) => {
 
   switch (req.method) {
     case 'GET':
-      if (req.url === '/enquetes/yaki-shabu') {
+      if (req.url === '/') {
+        const fs = require('fs');//ルートにアクセスされたらメニューを表示する
+        const rs = fs.createReadStream('./menu.html');
+        rs.pipe(res);
+        break;
+      } else if (req.url === '/enquetes/yaki-shabu') {
         res.write(pug.renderFile('./form.pug', {
           path: req.url,
           firstItem: '焼き肉',
-          secondItem: 'しゃぶしゃぶ'
+          secondItem: 'しゃぶしゃぶ',
+          anotherAnquetePath: '../enquetes/rice-bread' //別のアンケートへのパスを追加
         }));
       } else if (req.url === '/enquetes/rice-bread') {
         res.write(pug.renderFile('./form.pug', {
           path: req.url,
           firstItem: 'ごはん',
-          secondItem: 'パン'
+          secondItem: 'パン',
+          anotherAnquetePath: '../enquetes/sushi-pizza'
+        }));
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピザ',
+          anotherAnquetePath: '../enquetes/yaki-shabu'
         }));
       }
       res.end();
@@ -33,8 +47,20 @@ const server = http.createServer((req, res) => {
         body = Buffer.concat(body).toString();
         const decoded = decodeURIComponent(body);
         console.info('[' + now + '] 投稿: ' + decoded);
-        res.write('<!DOCTYPE html><html lang="jp"><head><meta charset="utf-8"></head><body><h1>' +
-          decoded + 'が投稿されました</h1></body></html>');
+        const favoritItem = decoded.match(/favorite=(.+?)$/); //アンケート結果のValueを抜き出し
+        let anotherAnquetePath;
+        if (req.url === '/enquetes/yaki-shabu') { //別のアンケートのパスを渡す
+          anotherAnquetePath = '../enquetes/rice-bread';
+        } else if (req.url === '/enquetes/rice-bread') {
+          anotherAnquetePath = '../enquetes/sushi-pizza';
+        } else if (req.url === '/enquetes/sushi-pizza') {
+          anotherAnquetePath = '../enquetes/yaki-shabu';
+        }
+        res.write(pug.renderFile('./result.pug', { //結果表示用のresult.pugを呼び出す
+          favoritItem: favoritItem[1],//アンケート結果を渡す
+          anotherAnquetePath: anotherAnquetePath
+
+        }));
         res.end();
       });
       break;
