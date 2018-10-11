@@ -32,6 +32,20 @@ const server = http.createServer((req, res) => {
             secondItem: 'ピザ'
           }));
           break;
+        case '/enquetes/comic-anime':
+          res.write(pug.renderFile('./form.pug', {
+            path: req.url,
+            firstItem: 'マンガ',
+            secondItem: 'アニメ'
+          }));
+          break;
+        case '/enquetes/niku-an':
+          res.write(pug.renderFile('./form.pug', {
+            path: req.url,
+            firstItem: '肉まん',
+            secondItem: 'あんまん'
+          }));
+          break;
         default:
           break;
       }
