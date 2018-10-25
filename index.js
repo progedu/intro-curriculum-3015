@@ -10,18 +10,44 @@ const server = http.createServer((req, res) => {
 
   switch (req.method) {
     case 'GET':
-      if (req.url === '/enquetes/yaki-shabu') {
-        res.write(pug.renderFile('./form.pug', {
-          path: req.url,
-          firstItem: '焼き肉',
-          secondItem: 'しゃぶしゃぶ'
-        }));
-      } else if (req.url === '/enquetes/rice-bread') {
-        res.write(pug.renderFile('./form.pug', {
-          path: req.url,
-          firstItem: 'ごはん',
-          secondItem: 'パン'
-        }));
+      switch (req.url) {
+        case '/enquetes/yaki-shabu':
+          res.write(pug.renderFile('./form.pug', {
+            path: req.url,
+            firstItem: '焼き肉',
+            secondItem: 'しゃぶしゃぶ'
+          }));
+          break;
+        case '/enquetes/rice-bread':
+          res.write(pug.renderFile('./form.pug', {
+            path: req.url,
+            firstItem: 'ごはん',
+            secondItem: 'パン'
+          }));
+          break;
+        case '/enquetes/sushi-pizza':
+          res.write(pug.renderFile('./form.pug', {
+            path: req.url,
+            firstItem: '寿司',
+            secondItem: 'ピザ'
+          }));
+          break;
+        case '/enquetes/comic-anime':
+          res.write(pug.renderFile('./form.pug', {
+            path: req.url,
+            firstItem: 'マンガ',
+            secondItem: 'アニメ'
+          }));
+          break;
+        case '/enquetes/niku-an':
+          res.write(pug.renderFile('./form.pug', {
+            path: req.url,
+            firstItem: '肉まん',
+            secondItem: 'あんまん'
+          }));
+          break;
+        default:
+          break;
       }
       res.end();
       break;
@@ -33,7 +59,7 @@ const server = http.createServer((req, res) => {
         body = Buffer.concat(body).toString();
         const decoded = decodeURIComponent(body);
         console.info('[' + now + '] 投稿: ' + decoded);
-        res.write('<!DOCTYPE html><html lang="jp"><head><meta charset="utf-8"></head><body><h1>' +
+        res.write('<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"></head><body><h1>' +
           decoded + 'が投稿されました</h1></body></html>');
         res.end();
       });
