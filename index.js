@@ -19,8 +19,26 @@ const server = http.createServer((req, res) => {
       } else if (req.url === '/enquetes/rice-bread') {
         res.write(pug.renderFile('./form.pug', {
           path: req.url,
-          firstItem: 'ごはん',
-          secondItem: 'パン'
+          firstItem: 'ごはん🍚',
+          secondItem: 'パン🍞'
+        }));
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: '寿司🍣',
+          secondItem: 'ピザ🍕'
+        }));
+      } else if (req.url === '/enquetes/fish-meet') {
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: '魚🐡',
+          secondItem: '肉🍖'
+        }));
+      } else if (req.url === '/enquetes/tea-coffee') {
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: 'お茶🍵',
+          secondItem: 'コーヒー☕'
         }));
       }
       res.end();
