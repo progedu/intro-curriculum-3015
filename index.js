@@ -10,21 +10,27 @@ const server = http.createServer((req, res) => {
 
   switch (req.method) {
     case 'GET':
-      if (req.url === '/enquetes/yaki-shabu') {
-        res.write(pug.renderFile('./form.pug', {
-          path: req.url,
-          firstItem: '焼き肉',
-          secondItem: 'しゃぶしゃぶ'
-        }));
-      } else if (req.url === '/enquetes/rice-bread') {
-        res.write(pug.renderFile('./form.pug', {
-          path: req.url,
-          firstItem: 'ごはん',
-          secondItem: 'パン'
-        }));
-      }
-      res.end();
-      break;
+    if (req.url === '/enquetes/yaki-shabu') {
+      res.write(pug.renderFile('./form.pug', {
+        path: req.url,
+        firstItem: '焼き肉',
+        secondItem: 'しゃぶしゃぶ'
+      }));
+    } else if (req.url === '/enquetes/rice-bread') {
+      res.write(pug.renderFile('./form.pug', {
+        path: req.url,
+        firstItem: 'ごはん',
+        secondItem: 'パン'
+      }));
+    } else if (req.url === '/enquetes/dog-cat') {
+      res.write(pug.renderFile('./form.pug', {
+        path: req.url,
+        firstItem: 'いぬ',
+        secondItem: 'ねこ'
+      }));
+    }
+    res.end();
+    break;
     case 'POST':
       let body = [];
       req.on('data', (chunk) => {
