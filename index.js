@@ -11,16 +11,22 @@ const server = http.createServer((req, res) => {
   switch (req.method) {
     case 'GET':
       if (req.url === '/enquetes/yaki-shabu') {
-        res.write(jade.renderFile('./form.jade', {
+        res.write(pug.renderFile('./form.jade', {
           path: req.url,
           firstItem: '焼き肉',
           secondItem: 'しゃぶしゃぶ'
         }));
       } else if (req.url === '/enquetes/rice-bread') {
-        res.write(jade.renderFile('./form.jade', {
+        res.write(pug.renderFile('./form.jade', {
           path: req.url,
           firstItem: 'ごはん',
           secondItem: 'パン'
+        }));
+      } else if (req.url === '/enquetes/susi-pizza') {
+        res.write(pug.renderFile('./form/jade', {
+          path: req.url,
+          firstItem: 'すし',
+          secondItem: 'ぴざ'
         }));
       }
       res.end();
