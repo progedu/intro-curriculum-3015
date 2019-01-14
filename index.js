@@ -11,8 +11,8 @@ const server = http.createServer((req, res) => {
   /**
    * アンケートを追加する
    * @param {string} path リクエストされたパス名
-   * @param {string} fItem 一つ目の選択肢
-   * @param {string} sItem 二つ目の選択肢
+   * @param {string} first_item 一つ目の選択肢
+   * @param {string} second_item 二つ目の選択肢
    */
   function addEnquete (path, first_item, second_item) {
     return res.write(pug.renderFile('./form.pug', {
