@@ -1,6 +1,6 @@
 'use strict';
 const http = require('http');
-const jade = require('jade');
+const pug = require('pug');
 const server = http.createServer((req, res) => {
   const now = new Date();
   console.info('[' + now + '] Requested by ' + req.connection.remoteAddress);
@@ -11,16 +11,22 @@ const server = http.createServer((req, res) => {
   switch (req.method) {
     case 'GET':
       if (req.url === '/enquetes/yaki-shabu') {
-        res.write(jade.renderFile('./form.jade', {
+        res.write(pug.renderFile('./form.pug', {
           path: req.url,
           firstItem: '焼き肉',
           secondItem: 'しゃぶしゃぶ'
         }));
       } else if (req.url === '/enquetes/rice-bread') {
-        res.write(jade.renderFile('./form.jade', {
+        res.write(pug.renderFile('./form.pug', {
           path: req.url,
           firstItem: 'ごはん',
           secondItem: 'パン'
+        }));
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピザ'
         }));
       }
       res.end();
@@ -47,7 +53,7 @@ const server = http.createServer((req, res) => {
 }).on('clientError', (e) => {
   console.error('[' + new Date() + '] Client Error', e);
 });
-const port = 8000;
+const port = 8111;
 server.listen(port, () => {
   console.info('[' + new Date() + '] Listening on ' + port);
 });
