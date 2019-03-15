@@ -22,6 +22,12 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
+      } else if (req.url === '/enquetes/dog-cat') {
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: '犬',
+          secondItem: '猫'
+        }));
       }
       res.end();
       break;
