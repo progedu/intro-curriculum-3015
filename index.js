@@ -10,17 +10,19 @@ const server = http.createServer((req, res) => {
 
   switch (req.method) {
     case 'GET':
-      if (req.url === '/enquetes/yaki-shabu') {
+      if (req.url === '/enquetes/PS4-Switch') {
         res.write(pug.renderFile('./form.pug', {
           path: req.url,
-          firstItem: '焼き肉',
-          secondItem: 'しゃぶしゃぶ'
+          firstItem: 'PS4',
+          secondItem: 'Switch',
+          thirdItem: '両方'
         }));
-      } else if (req.url === '/enquetes/rice-bread') {
+      } else if (req.url === '/enquetes/Food-food-and-shelter') {
         res.write(pug.renderFile('./form.pug', {
           path: req.url,
-          firstItem: 'ごはん',
-          secondItem: 'パン'
+          firstItem: '衣＝服',
+          secondItem: '食',
+          thirdItem: '住＝家'
         }));
       }
       res.end();
