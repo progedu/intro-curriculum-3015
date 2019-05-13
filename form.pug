@@ -4,12 +4,15 @@ html(lang="ja")
     meta(charset="UTF-8")
     title アンケート
   body
-    h1 どちらが食べたいですか？
+    h1 大切なのは？
     form(method="post" action=path)
-      span 名前: 
-      input(type="text" name="name")
       input(type="radio" name="favorite" value=firstItem)
       span #{firstItem} 
       input(type="radio" name="favorite" value=secondItem)
       span #{secondItem} 
+      input(type="radio" name="favorite" value=thirdItem)
+      span #{thirdItem} 
+      br
+      span その理由は？　
+      input(type="text" name="name")
       button(type="submit") 投稿
