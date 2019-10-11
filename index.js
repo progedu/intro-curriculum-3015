@@ -11,23 +11,23 @@ const server = http.createServer((req, res) => {
   switch (req.method) {
     case 'GET':
       let firstItem = 'ラーメン';
-			let secondItem = 'カレーライス';
-			if (req.url === '/enquetes/yaki-shabu') {
-				firstItem = '焼き肉';
-				secondItem = 'しゃぶしゃぶ';
-			} else if (req.url === '/enquetes/rise-bread') {
-				firstItem = 'ごはん';
-				secondItem = 'パン';
-			} else if (req.url === '/enquetes/sushi-pizza') {
-        firstItem = 'お寿司';
-				secondItem = 'ピザ';
-      }
-			res.write(pug.renderFile('./form.pug', {
-				path: req.url,
-				firstItem: firstItem,
-				secondItem: secondItem
-			}));
-      res.end();
+      let secondItem = 'カレーライス';
+    if (req.url === '/enquetes/yaki-shabu') {
+	  firstItem = '焼き肉';
+	  secondItem = 'しゃぶしゃぶ';
+    } else if (req.url === '/enquetes/rise-bread') {
+	  firstItem = 'ごはん';
+	  secondItem = 'パン';
+    } else if (req.url === '/enquetes/sushi-pizza') {
+          firstItem = 'お寿司';
+	  secondItem = 'ピザ';
+    }
+     res.write(pug.renderFile('./form.pug', {
+	path: req.url,
+        firstItem: firstItem,
+	secondItem: secondItem
+    }));
+     res.end();
       break;
     case 'POST':
       let body = [];
