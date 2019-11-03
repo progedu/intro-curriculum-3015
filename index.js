@@ -10,21 +10,27 @@ const server = http.createServer((req, res) => {
 
   switch (req.method) {
     case 'GET':
+      let firstItem = 'ごはん';
+      let secondItem = 'パン';
       if (req.url === '/enquetes/yaki-shabu') {
-        res.write(pug.renderFile('./form.pug', {
-          path: req.url,
-          firstItem: '焼き肉',
-          secondItem: 'しゃぶしゃぶ'
-        }));
+        firstItem = '角煮';
+        secondItem = 'おでん';
       } else if (req.url === '/enquetes/rice-bread') {
-        res.write(pug.renderFile('./form.pug', {
-          path: req.url,
-          firstItem: 'ごはん',
-          secondItem: 'パン'
-        }));
+        firstItem = 'ごはん';
+        secondItem = 'パン';
+      } else if (req.url === '/enquetes/mentai-motsu') {
+        firstItem = 'めんたい重';
+        secondItem = 'もつ鍋';
       }
+      
+      res.write(pug.renderFile('./form.pug', {
+        path: req.url,
+        firstItem: firstItem,
+        secondItem: secondItem
+      }));
       res.end();
       break;
+
     case 'POST':
       let rawData = '';
       req.on('data', (chunk) => {
