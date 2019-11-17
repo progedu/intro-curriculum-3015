@@ -1,6 +1,16 @@
 'use strict';
 const http = require('http');
 const pug = require('pug');
+const siteMap = new Map();
+
+function render(req, res, item1, item2) {
+  res.write(pug.renderFile('./form.pug', {
+    path: req.url,
+    firstItem: item1,
+    secondItem: item2
+  }));
+}
+
 const server = http.createServer((req, res) => {
   const now = new Date();
   console.info('[' + now + '] Requested by ' + req.connection.remoteAddress);
@@ -11,17 +21,11 @@ const server = http.createServer((req, res) => {
   switch (req.method) {
     case 'GET':
       if (req.url === '/enquetes/yaki-shabu') {
-        res.write(pug.renderFile('./form.pug', {
-          path: req.url,
-          firstItem: '焼き肉',
-          secondItem: 'しゃぶしゃぶ'
-        }));
+        render(req, res, '焼肉', 'しゃぶしゃぶ');
       } else if (req.url === '/enquetes/rice-bread') {
-        res.write(pug.renderFile('./form.pug', {
-          path: req.url,
-          firstItem: 'ごはん',
-          secondItem: 'パン'
-        }));
+        render(req, res, 'ごはん', 'パン');
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        render(req, res, '寿司', 'ピザ');
       }
       res.end();
       break;
