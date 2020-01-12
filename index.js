@@ -8,6 +8,7 @@ const server = http.createServer((req, res) => {
     'Content-Type': 'text/html; charset=utf-8'
   });
 
+  
   switch (req.method) {
     case 'GET':
       if (req.url === '/enquetes/yaki-shabu') {
@@ -21,6 +22,12 @@ const server = http.createServer((req, res) => {
           path: req.url,
           firstItem: 'ごはん',
           secondItem: 'パン'
+        }));
+      } else if (req.url === '/enquetes/sushi-pizza'){
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピザ'
         }));
       }
       res.end();
