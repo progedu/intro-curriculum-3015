@@ -1,8 +1,11 @@
 'use strict';
-const http = require('http');
-const pug = require('pug');
-const server = http.createServer((req, res) => {
-  const now = new Date();
+
+var http = require('http');
+
+var pug = require('pug');
+
+var server = http.createServer(function (req, res) {
+  var now = new Date();
   console.info('[' + now + '] Requested by ' + req.connection.remoteAddress);
   res.writeHead(200, {
     'Content-Type': 'text/html; charset=utf-8'
@@ -29,29 +32,31 @@ const server = http.createServer((req, res) => {
           secondItem: 'ピザ'
         }));
       }
+
       res.end();
       break;
+
     case 'POST':
-      let rawData = '';
-      req.on('data', (chunk) => {
+      var rawData = '';
+      req.on('data', function (chunk) {
         rawData = rawData + chunk;
-      }).on('end', () => {
-        const decoded = decodeURIComponent(rawData);
+      }).on('end', function () {
+        var decoded = decodeURIComponent(rawData);
         console.info('[' + now + '] 投稿: ' + decoded);
-        res.write('<!DOCTYPE html><html lang="ja"><body><h1>' +
-          decoded + 'が投稿されました</h1></body></html>');
+        res.write('<!DOCTYPE html><html lang="ja"><body><h1>' + decoded + 'が投稿されました</h1></body></html>');
         res.end();
       });
       break;
+
     default:
       break;
   }
-}).on('error', (e) => {
+}).on('error', function (e) {
   console.error('[' + new Date() + '] Server Error', e);
-}).on('clientError', (e) => {
+}).on('clientError', function (e) {
   console.error('[' + new Date() + '] Client Error', e);
 });
-const port = 8000;
-server.listen(port, () => {
+var port = 8000;
+server.listen(port, function () {
   console.info('[' + new Date() + '] Listening on ' + port);
 });
