@@ -22,7 +22,14 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
+      } else if (req.url === '/enquetes/sushi-pizza'){
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピザ'
+        }));
       }
+
       res.end();
       break;
     case 'POST':
@@ -45,7 +52,7 @@ const server = http.createServer((req, res) => {
 }).on('clientError', (e) => {
   console.error('[' + new Date() + '] Client Error', e);
 });
-const port = 8000;
+const port = 8001;
 server.listen(port, () => {
   console.info('[' + new Date() + '] Listening on ' + port);
 });
