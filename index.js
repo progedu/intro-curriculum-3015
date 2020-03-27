@@ -16,6 +16,12 @@ const server = http.createServer((req, res) => {
           firstItem: '焼き肉',
           secondItem: 'しゃぶしゃぶ'
         }));
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: 'ピザ',
+          secondItem: 'お寿司'
+        }));
       } else if (req.url === '/enquetes/rice-bread') {
         res.write(pug.renderFile('./form.pug', {
           path: req.url,
