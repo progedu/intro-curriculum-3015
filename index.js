@@ -10,6 +10,36 @@ const server = http.createServer((req, res) => {
 
   switch (req.method) {
     case 'GET':
+      /**
+      *
+      *追加しやすいようにifからswitchにしたかった
+      *switch (req.url) {
+      *  case '/enquetes/yaki-shabu':
+      *    res.write(pug.renderFile('./form.pug', {
+      *      path: req.url,
+      *      firstItem: '焼き肉',
+      *      secondItem: 'しゃぶしゃぶ'
+      *    }));
+      *    break;
+      *  case '/enquetes/rice-bread':
+      *    res.write(pug.renderFile('./form.pug', {
+      *      path: req.url,
+      *      firstItem: 'ごはん',
+      *      secondItem: 'パン'
+      *    }));
+      *    break;
+      *  case 'sushi-pizza':
+      *    res.write(pug.renderFile('./form.pug', {
+      *      path: req.url,
+      *      firstItem: '寿司',
+      *      secondItem: 'ピザ'
+      *    }));
+      *    break;
+      *  default:
+      *    break;
+      *  }
+      *res.end();
+      *break;*/
       if (req.url === '/enquetes/yaki-shabu') {
         res.write(pug.renderFile('./form.pug', {
           path: req.url,
@@ -22,9 +52,13 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピザ'
+        }));
       }
-      res.end();
-      break;
     case 'POST':
       let body = [];
       req.on('data', (chunk) => {
