@@ -1,0 +1,8 @@
+{
+  "name": "Enquetes",
+  "description": "Enquetes for favorite foods.",
+  "repository": "https://github.com/koume138/intro-curriculum-3015",
+  "logo": "",
+  "keywords": ["node"],
+  "image": "heroku/nodejs"
+}
