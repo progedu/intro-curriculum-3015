@@ -22,6 +22,12 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
+      } else if (req.url === '/enquetes/cake-dora') {
+        res.write(pug.renderFile('./form.pug',{
+          path: req.url,
+          firstItem: 'ケーキ',
+          secondItem: 'どら焼き'
+        }));
       }
       res.end();
       break;
