@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
           secondItem: 'パン'
         }));
       } else if(req.url === '/enquetes/sushi-pizza') {
-        res.write(jade.renderFile('./form.jade', {
+        res.write(pug.renderFile('./form.pug', {
 	  path: req.url,
 	  firstItem: 'すし',
 	  secondItem: 'ピザ'
@@ -37,9 +37,12 @@ const server = http.createServer((req, res) => {
         rawData = rawData + chunk;
       }).on('end', () => {
         const decoded = decodeURIComponent(rawData);
+	const qs = require('querystring');
+	const answer = qs.parse( decoded );
         console.info('[' + now + '] 投稿: ' + decoded);
         res.write('<!DOCTYPE html><html lang="ja"><body><h1>' +
-          decoded + 'が投稿されました</h1></body></html>');
+	  answer['name'] + 'さんは' +
+          answer['favorite'] + 'に投票しました</h1></body></html>');
         res.end();
       });
       break;
