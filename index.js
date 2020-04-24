@@ -22,6 +22,12 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
+      }else if (req.url === '/enquetes/sushi-pizza'){
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピザ',
+        }));
       }
       res.end();
       break;
@@ -30,7 +36,7 @@ const server = http.createServer((req, res) => {
       req.on('data', (chunk) => {
         rawData = rawData + chunk;
       }).on('end', () => {
-        const decoded = decodeURIComponent(rawData);
+        const decoded = decodeURIComponent(rawData)
         console.info('[' + now + '] 投稿: ' + decoded);
         res.write('<!DOCTYPE html><html lang="ja"><body><h1>' +
           decoded + 'が投稿されました</h1></body></html>');
