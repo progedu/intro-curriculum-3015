@@ -22,6 +22,12 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピザ'
+        }));
       }
       res.end();
       break;
@@ -45,7 +51,7 @@ const server = http.createServer((req, res) => {
 }).on('clientError', (e) => {
   console.error('[' + new Date() + '] Client Error', e);
 });
-const port = 8000;
+const port = process.env.PORT || 8000;
 server.listen(port, () => {
   console.info('[' + new Date() + '] Listening on ' + port);
 });
