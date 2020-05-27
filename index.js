@@ -13,7 +13,7 @@ const server = http.createServer((req, res) => {
       if (req.url === '/enquetes/yaki-shabu') {
         res.write(pug.renderFile('./form.pug', {
           path: req.url,
-          firstItem: '焼き肉',
+          firstItem: '焼肉',
           secondItem: 'しゃぶしゃぶ'
         }));
       } else if (req.url === '/enquetes/rice-bread') {
@@ -21,6 +21,12 @@ const server = http.createServer((req, res) => {
           path: req.url,
           firstItem: 'ごはん',
           secondItem: 'パン'
+        }));
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピザ'
         }));
       }
       res.end();
