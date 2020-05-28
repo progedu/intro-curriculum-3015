@@ -23,6 +23,15 @@ const server = http.createServer((req, res) => {
           secondItem: 'パン'
         }));
       }
+      else if (req.url === '/enquetes/sushi-pizza')
+      {
+        res.write(pug.renderFile('./form.pug', 
+        {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'pizza'
+        }));
+      }
       res.end();
       break;
     case 'POST':
@@ -30,10 +39,11 @@ const server = http.createServer((req, res) => {
       req.on('data', (chunk) => {
         rawData = rawData + chunk;
       }).on('end', () => {
+        const qs = require('querystring');
         const decoded = decodeURIComponent(rawData);
-        console.info('[' + now + '] 投稿: ' + decoded);
-        res.write('<!DOCTYPE html><html lang="ja"><body><h1>' +
-          decoded + 'が投稿されました</h1></body></html>');
+        const answer = qs.parse(decoded);
+        console.info(`[${now}] 投稿: ${decoded}`);
+        res.write(`<!DOCTYPE html><html lang=\\"ja\\"><body><h1>${answer["name"]}さんが${answer["favorite"]}と投稿しました</h1></body></html>`);
         res.end();
       });
       break;
@@ -41,11 +51,11 @@ const server = http.createServer((req, res) => {
       break;
   }
 }).on('error', (e) => {
-  console.error('[' + new Date() + '] Server Error', e);
+  console.error(`[${new Date()}] Server Error`, e);
 }).on('clientError', (e) => {
-  console.error('[' + new Date() + '] Client Error', e);
+  console.error(`[${new Date()}] Client Error`, e);
 });
 const port = 8000;
 server.listen(port, () => {
-  console.info('[' + new Date() + '] Listening on ' + port);
+  console.info(`[${new Date()}] Listening on ${port}`);
 });
