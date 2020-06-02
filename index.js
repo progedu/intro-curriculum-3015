@@ -22,6 +22,12 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
+      } else if (req.url === '/enquetes/sushi-soba'){
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: 'すし',
+          secondItem: 'そば'
+        }));
       }
       res.end();
       break;
