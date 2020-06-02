@@ -10,17 +10,28 @@ const server = http.createServer((req, res) => {
 
   switch (req.method) {
     case 'GET':
+//      const fs = require('fs');
+//      const rs = fs.createReadStream('./form.html');
+//      rs.pipe(res);
+//      res.write(pug.renderFile('./form.pug'));
+//      res.write(pug.renderFile('./form.pug', {
       if (req.url === '/enquetes/yaki-shabu') {
         res.write(pug.renderFile('./form.pug', {
-          path: req.url,
-          firstItem: '焼き肉',
-          secondItem: 'しゃぶしゃぶ'
+        path: req.url,
+        firstItem: '焼き肉',
+        secondItem: 'しゃぶしゃぶ'
         }));
       } else if (req.url === '/enquetes/rice-bread') {
         res.write(pug.renderFile('./form.pug', {
+        path: req.url,
+        firstItem: 'ごはん',
+        secondItem: 'パン'
+    　  }));
+      } else if (req.url == '/enquetes/sushi-pizza') {
+        res.write(pug.renderFile('./form.pug', {
           path: req.url,
-          firstItem: 'ごはん',
-          secondItem: 'パン'
+          firstItem: 'お寿司',
+          secondItem: 'ピッツァ'       
         }));
       }
       res.end();
@@ -30,10 +41,14 @@ const server = http.createServer((req, res) => {
       req.on('data', (chunk) => {
         rawData = rawData + chunk;
       }).on('end', () => {
+        const qs = require('querystring');
         const decoded = decodeURIComponent(rawData);
         console.info('[' + now + '] 投稿: ' + decoded);
+        const answer = qs.parse(decoded);
         res.write('<!DOCTYPE html><html lang="ja"><body><h1>' +
-          decoded + 'が投稿されました</h1></body></html>');
+//          answer['name'] + 'さんは' + answer['yaki-shabu'] +
+          answer['name'] + 'さんは' + answer['favorite'] +
+          'に投票しました！</h1></body></html>');
         res.end();
       });
       break;
