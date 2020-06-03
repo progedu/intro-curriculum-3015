@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
           secondItem: 'パン'
         }));
       } else if (req.url === '/enquetes/sushi-pizza') {
-        res.write(jade.renderFile('./form.jade', {
+        res.write(pug.renderFile('./form.pug', {
           path: req.url,
           firstItem: '寿司',
           secondItem: 'ピザ'
