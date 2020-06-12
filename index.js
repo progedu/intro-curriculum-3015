@@ -28,7 +28,16 @@ const server = http
             })
           );
         }
-        res.end();
+        else if (req.url === '/enquetes/sushi-pizza') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: '寿司',
+              secondItem: 'ピザ'
+            })
+          );
+        }
+      res.end();
         break;
       case 'POST':
         let rawData = '';
