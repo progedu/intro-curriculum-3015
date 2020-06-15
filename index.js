@@ -22,11 +22,17 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
-      }
-      res.end();
-      break;
+  } else if (req.url === '/enquetes/sushi-pizza') {
+    res.write(pug.renderFile('./form.pug', {
+      path: req.url,
+      firstItem: '寿司',
+      secondItem: 'ピザ'
+    }));
+  }
+    res.end();
+    break;
     case 'POST':
-      let body = [];
+let body = [];
       req.on('data', (chunk) => {
         body.push(chunk);
       }).on('end', () => {
