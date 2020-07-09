@@ -6,7 +6,7 @@ const server = http
     const now = new Date();
     console.info('[' + now + '] Requested by ' + req.connection.remoteAddress);
     res.writeHead(200, {
-      'Content-Type': 'text/html; charset=utf-8'
+      'Content-Type': 'text/html; charset=utf-8',
     });
 
     switch (req.method) {
@@ -16,7 +16,7 @@ const server = http
             pug.renderFile('./form.pug', {
               path: req.url,
               firstItem: '焼き肉',
-              secondItem: 'しゃぶしゃぶ'
+              secondItem: 'しゃぶしゃぶ',
             })
           );
         } else if (req.url === '/enquetes/rice-bread') {
@@ -24,7 +24,15 @@ const server = http
             pug.renderFile('./form.pug', {
               path: req.url,
               firstItem: 'ごはん',
-              secondItem: 'パン'
+              secondItem: 'パン',
+            })
+          );
+        } else if (req.url === '/enquetes/sushi-pizza') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: '寿司',
+              secondItem: 'ピザ',
             })
           );
         }
@@ -33,7 +41,7 @@ const server = http
       case 'POST':
         let rawData = '';
         req
-          .on('data', chunk => {
+          .on('data', (chunk) => {
             rawData = rawData + chunk;
           })
           .on('end', () => {
@@ -41,9 +49,13 @@ const server = http
             const decoded = decodeURIComponent(rawData);
             console.info('[' + now + '] 投稿: ' + decoded);
             const answer = qs.parse(decoded);
-            res.write('<!DOCTYPE html><html lang="ja"><body><h1>' +
-              answer['name'] + 'さんは' + answer['favorite'] +
-              'に投票しました</h1></body></html>');
+            res.write(
+              '<!DOCTYPE html><html lang="ja"><body><h1>' +
+                answer['name'] +
+                'さんは' +
+                answer['favorite'] +
+                'に投票しました</h1></body></html>'
+            );
             res.end();
           });
         break;
@@ -51,10 +63,10 @@ const server = http
         break;
     }
   })
-  .on('error', e => {
+  .on('error', (e) => {
     console.error('[' + new Date() + '] Server Error', e);
   })
-  .on('clientError', e => {
+  .on('clientError', (e) => {
     console.error('[' + new Date() + '] Client Error', e);
   });
 const port = 8000;
