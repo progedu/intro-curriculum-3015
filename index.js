@@ -1,6 +1,7 @@
 'use strict';
 const http = require('http');
 const pug = require('pug');
+
 const server = http.createServer((req, res) => {
   const now = new Date();
   console.info('[' + now + '] Requested by ' + req.connection.remoteAddress);
@@ -8,21 +9,35 @@ const server = http.createServer((req, res) => {
     'Content-Type': 'text/html; charset=utf-8'
   });
 
+  /**
+   * @param {string} firstItem
+   * @param {string} secondItem
+   * 項目をセットし、ページを描き出す
+   */
+  function render(firstItem, secondItem){
+    res.write(pug.renderFile('./form.pug', {
+      path: req.url,
+      firstItem: firstItem,
+      secondItem: secondItem
+    }));
+  }
+
   switch (req.method) {
     case 'GET':
+      // 初期値
+      let firstItem = 'あんぱん';
+      let secondItem = 'クリームパン';
       if (req.url === '/enquetes/yaki-shabu') {
-        res.write(pug.renderFile('./form.pug', {
-          path: req.url,
-          firstItem: '焼き肉',
-          secondItem: 'しゃぶしゃぶ'
-        }));
+        firstItem = '焼き肉',
+        secondItem = 'しゃぶしゃぶ'
       } else if (req.url === '/enquetes/rice-bread') {
-        res.write(pug.renderFile('./form.pug', {
-          path: req.url,
-          firstItem: 'ごはん',
-          secondItem: 'パン'
-        }));
+        firstItem = 'ごはん',
+        secondItem = 'パン'
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        firstItem = '寿司',
+        secondItem = 'ピザ'
       }
+      render(firstItem, secondItem);
       res.end();
       break;
     case 'POST':
