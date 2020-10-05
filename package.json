@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jade": "^1.11.0"
+    "install": "^0.10.4",
+    "jade": "^1.11.0",
+    "npm": "^5.6.0"
   }
 }

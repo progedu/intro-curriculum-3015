@@ -22,8 +22,14 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(jade.renderFile('./form.jade', {
+          path: req.url,
+          firstItem: 'すし',
+          secondItem: 'ぴっざ'
+        }));
       }
-      res.end();
+     res.end();
       break;
     case 'POST':
       let body = [];
@@ -47,7 +53,7 @@ const server = http.createServer((req, res) => {
 }).on('clientError', (e) => {
   console.error('[' + new Date() + '] Client Error', e);
 });
-const port = 8000;
+const port = 5000;
 server.listen(port, () => {
   console.info('[' + new Date() + '] Listening on ' + port);
 });
