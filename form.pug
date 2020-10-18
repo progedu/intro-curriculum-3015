@@ -2,14 +2,31 @@ doctype html
 html(lang="ja")
   head
     meta(charset="UTF-8")
-    title アンケート
+    title 応募フォーム
+    style(type="text/css").
+      body{
+        background-color: #87CEFA;
+        text-align:center
+      }
   body
-    h1 どちらが食べたいですか？
-    form(method="post" action=path)
-      span 名前: 
-      input(type="text" name="name")
+    h1 お好きな一品をお選びください！
+    h2 
+     form(method="post" action=path)
+      span ニックネーム:
+      input(type="text" name="ニックネーム")
+      br
       input(type="radio" name="favorite" value=firstItem)
-      span #{firstItem} 
+      span #{firstItem}
       input(type="radio" name="favorite" value=secondItem)
-      span #{secondItem} 
-      button(type="submit") 投稿
+      span #{secondItem}
+      input(type="radio" name="favorite" value=thirdItem)
+      span #{thirdItem}
+      br
+      input(type="radio" name="favorite" value=fourthItem)
+      span #{fourthItem}
+      input(type="radio" name="favorite" value=fifthItem)
+      span #{fifthItem}
+      input(type="radio" name="favorite" value=sixthItem)
+      span #{sixthItem}
+      br
+      button(type="submit") ご応募
