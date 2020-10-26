@@ -9,40 +9,6 @@ const server = http
       'Content-Type': 'text/html; charset=utf-8'
     });
 
-<<<<<<< HEAD
-  switch (req.method) {
-    case 'GET':
-      if (req.url === '/enquetes/yaki-shabu') {
-        res.write(pug.renderFile('./form.pug', {
-          path: req.url,
-          firstItem: '焼き肉',
-          secondItem: 'しゃぶしゃぶ'
-        }));
-      } else if (req.url === '/enquetes/rice-bread') {
-        res.write(pug.renderFile('./form.pug', {
-          path: req.url,
-          firstItem: 'ごはん',
-          secondItem: 'パン'
-        }));
-      } else if(req.url === '/enquetes/sushi-pizza') {
-        res.write(pug.renderFile('./form.pug', {
-          path: req.url,
-          firstItem: '寿司',
-          secondItem: 'ピザ'
-        }));
-    }
-      res.end();
-      break;
-    case 'POST':
-      let rawData = '';
-      req.on('data', (chunk) => {
-        rawData = rawData + chunk;
-      }).on('end', () => {
-        const decoded = decodeURIComponent(rawData);
-        console.info('[' + now + '] 投稿: ' + decoded);
-        res.write('<!DOCTYPE html><html lang="ja"><body><h1>' +
-          decoded + 'が投稿されました</h1></body></html>');
-=======
     switch (req.method) {
       case 'GET':
         if (req.url === '/enquetes/yaki-shabu') {
@@ -61,8 +27,15 @@ const server = http
               secondItem: 'パン'
             })
           );
+        } else if (req.url === '/enquetes/sushi-pizza') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: '寿司',
+              secondItem: 'ピザ'
+            })
+          );
         }
->>>>>>> c5d8ae67021d7f8f91be294e98a4d1f729656c12
         res.end();
         break;
       case 'POST':
