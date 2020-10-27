@@ -27,6 +27,14 @@ const server = http
               secondItem: 'パン'
             })
           );
+        } else if(req.url === '/enquetes/mon-bull') {
+          res.write(
+            pug.renderFile('./form.pug' , {
+              path:req.url,
+              firstItem: 'モンスター',
+              secondItem: 'レッドブル'
+            })
+          );
         }
         res.end();
         break;
