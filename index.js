@@ -27,6 +27,14 @@ const server = http
               secondItem: 'パン'
             })
           );
+        } else if (req.url === '/enquetes/toro-uni') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: 'トロ',
+              secondItem: 'ウニ'
+            })
+          );
         }
         res.end();
         break;
