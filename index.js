@@ -28,11 +28,11 @@ const server = http.createServer((req, res) => {
           firstItem: '寿司',
           secondItem: 'ピザ'
         }));
-      }else if (req.url === '/enquetes/name') {
+      }else if (req.url === '/enquetes/stick') {
         res.write(pug.renderFile('./form.pug', {
           path: req.url,
-          firstItem: 'Jade',
-          secondItem: 'Jude'
+          firstItem: 'ポッキー',
+          secondItem: 'プリッツ'
         }));
       }
       res.end();
