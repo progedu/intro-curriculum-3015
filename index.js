@@ -27,6 +27,14 @@ const server = http
               secondItem: 'パン'
             })
           );
+        }else if (req.url === '/enquetes/which-girl') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: '髪の綺麗な子',
+              secondItem: '声の綺麗な子'
+            })
+          );
         }
         res.end();
         break;
