@@ -22,6 +22,12 @@ const server = http.createServer((req, res) => {
           firstItem: 'ごはん',
           secondItem: 'パン'
         }));
+      } else if (req.url === '/enquetes/kuri-imo') {
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: 'モンブラン',
+          secondItem: 'スィートポテト'
+        }));
       }
       res.end();
       break;
