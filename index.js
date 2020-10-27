@@ -15,6 +15,8 @@ const server = http
           res.write(
             pug.renderFile('./form.pug', {
               path: req.url,
+              hasThirdItem: false,
+              title: "どちらが食べたいですか？",
               firstItem: '焼き肉',
               secondItem: 'しゃぶしゃぶ'
             })
@@ -23,10 +25,24 @@ const server = http
           res.write(
             pug.renderFile('./form.pug', {
               path: req.url,
+              hasThirdItem: false,
+              title: "どちらが食べたいですか？",
               firstItem: 'ごはん',
               secondItem: 'パン'
             })
           );
+        }
+        else if (req.url === '/enquetes/phone') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              hasThirdItem: true,
+              title: "どちらを選びますか？",
+              firstItem: 'iPhone 12',
+              secondItem: 'Pixel 5',
+              thirdItem: 'Galaxy S20 5G'
+            })
+          )
         }
         res.end();
         break;
