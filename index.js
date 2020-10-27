@@ -27,6 +27,14 @@ const server = http
               secondItem: 'パン'
             })
           );
+        }else if (req.url === '/enquetes/okashi') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: 'ばかうけ',
+              secondItem: 'カントリーマアム'
+            })
+          );
         }
         res.end();
         break;
