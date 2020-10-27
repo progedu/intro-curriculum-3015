@@ -27,12 +27,12 @@ const server = http
               secondItem: 'パン'
             })
           );
-        } else if (req.url === '/enquetes/sushi-pizza') {
+        } else if (req.url === '/enquetes/mac-windows') {
           res.write(
             pug.renderFile('./form.pug', {
               path: req.url,
-              firstItem: '寿司',
-              secondItem: 'ピザ'
+              firstItem: 'mac',
+              secondItem: 'windows'
             })
           );
         }
