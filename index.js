@@ -27,6 +27,38 @@ const server = http
               secondItem: 'パン'
             })
           );
+        } else if (req.url === '/enquetes/sushi-pizza') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: '寿司',
+              secondItem: 'ピザ'
+            })
+          );
+        } else if (req.url === '/enquetes/kinoko-takenoko') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: 'きのこの山',
+              secondItem: 'たけのこの里'
+            })
+          );
+        } else if (req.url === '/enquetes/youtube-niconico') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: 'Youtube',
+              secondItem: 'ニコニコ動画'
+            })
+          );
+        } else if (req.url === '/enquetes/iphone-android') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: 'iPhone',
+              secondItem: 'Android'
+            })
+          );
         }
         res.end();
         break;
