@@ -11,23 +11,32 @@ const server = http
 
     switch (req.method) {
       case 'GET':
-        if (req.url === '/enquetes/yaki-shabu') {
-          res.write(
-            pug.renderFile('./form.pug', {
-              path: req.url,
-              firstItem: '焼き肉',
-              secondItem: 'しゃぶしゃぶ'
-            })
-          );
-        } else if (req.url === '/enquetes/rice-bread') {
-          res.write(
-            pug.renderFile('./form.pug', {
-              path: req.url,
-              firstItem: 'ごはん',
-              secondItem: 'パン'
-            })
-          );
+
+        let firstItem = "";
+        let secondItem = "";
+        switch (req.url) {
+          case '/enquetes/yaki-shabu':
+            firstItem = '焼き肉';
+            secondItem = 'しゃぶしゃぶ';
+          break;
+
+          case '/enquetes/rice-bread':
+            firstItem = 'ごはん';
+            secondItem = 'パン';
+          break;
+
+          case '/enquetes/ps-xb':
+            firstItem = 'Playstation5';
+            secondItem = 'Xbox series X';
+          break;
+          default:
+          break;
         }
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem,
+          secondItem
+        }));
         res.end();
         break;
       case 'POST':
