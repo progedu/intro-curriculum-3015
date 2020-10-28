@@ -27,6 +27,14 @@ const server = http
               secondItem: 'パン'
             })
           );
+        } else if (req.url === '/enquetes/yaki-sweet') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: '焼き芋',
+              secondItem: 'スイートポテト'
+            })
+          );
         }
         res.end();
         break;
