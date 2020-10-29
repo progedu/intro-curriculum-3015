@@ -15,19 +15,20 @@ const server = http
       let data = { path: req.url };
       switch (req.url) {
         case '/enquetes/anime':
-           data ['firstItem'] ='keroro';
-           data ['secondItem'] ='utitama';
+           data ['firstItem'] ='ケロロ軍曹';
+           data ['secondItem'] ='うちタマ？！';
            break;
           
         case '/enquetes/game':
-          data ['firstItem'] ='mario';
-          data ['secondItem'] ='MRD';
+          data ['firstItem'] ='ルイージマンション３';
+          data ['secondItem'] ='マッドラットデッド ';
           break;
 
       };
 
-        res.end();
+        res.write(pug.renderFile('./form.pug' , data));
         break;
+        
       case 'POST':
         let rawData = '';
         req
