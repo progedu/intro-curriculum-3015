@@ -27,7 +27,15 @@ const server = http
               secondItem: 'パン'
             })
           );
-        }
+        } else if (req.url === '/enquetes/dog-cat') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: 'イヌ',
+              secondItem: 'ネコ'
+            })
+          );
+        } 
         res.end();
         break;
       case 'POST':
