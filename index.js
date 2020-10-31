@@ -19,12 +19,12 @@ const server = http
               secondItem: 'しゃぶしゃぶ'
             })
           );
-        } else if (req.url === '/enquetes/rice-bread') {
+        } else if (req.url === '/enquetes/cat-dog') {
           res.write(
             pug.renderFile('./form.pug', {
               path: req.url,
-              firstItem: 'ごはん',
-              secondItem: 'パン'
+              firstItem: '猫',
+              secondItem: '犬'
             })
           );
         }
