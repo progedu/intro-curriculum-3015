@@ -27,6 +27,14 @@ const server = http
               secondItem: 'パン'
             })
           );
+        } else if (req.url === '/enquetes/sports') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: 'サッカー',
+              secondItem: 'バスケット'
+            })
+          );
         }
         res.end();
         break;
