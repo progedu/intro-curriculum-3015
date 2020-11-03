@@ -27,6 +27,14 @@ const server = http
               secondItem: 'パン'
             })
           );
+        } else if (req.url === '/enquetes/ikura-uni') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: 'いくら',
+              secondItem: 'うに'
+            })
+          );
         }
         res.end();
         break;
