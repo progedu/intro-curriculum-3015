@@ -8,28 +8,35 @@ const server = http
     res.writeHead(200, {
       'Content-Type': 'text/html; charset=utf-8'
     });
-
-    switch (req.method) {
+     switch (req.method) {
       case 'GET':
-        if (req.url === '/enquetes/yaki-shabu') {
-          res.write(
+         if (req.url === '/enquetes/yaki-shabu') {
+           res.write(
             pug.renderFile('./form.pug', {
-              path: req.url,
-              firstItem: '焼き肉',
-              secondItem: 'しゃぶしゃぶ'
+               path: req.url,
+               firstItem: '焼き肉',
+               secondItem: 'しゃぶしゃぶ'
+             })
+           );
+         } else if (req.url === '/enquetes/italian-french') {
+           res.write(
+             pug.renderFile('./form.pug', {
+               path: req.url,
+               firstItem: 'イタリアン',
+               secondItem: 'フレンチ'
+             })
+           );
+         } else if (req.url === '/enquetes/humbergsteak-curry') {
+           res.write(
+             pug.renderFile('./form.pug', {
+               path: req.url,
+               firstItem: 'ハンバーグ',
+               secondItem: 'カレー'
             })
-          );
-        } else if (req.url === '/enquetes/rice-bread') {
-          res.write(
-            pug.renderFile('./form.pug', {
-              path: req.url,
-              firstItem: 'ごはん',
-              secondItem: 'パン'
-            })
-          );
-        }
-        res.end();
-        break;
+           );
+         }
+         res.end();
+         break;
       case 'POST':
         let rawData = '';
         req
