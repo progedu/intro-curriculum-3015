@@ -27,6 +27,14 @@ const server = http
               secondItem: 'パン'
             })
           );
+        } else if (req.url === '/enquetes/ps5-nds'){
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: 'PS5',
+              secondItem: 'NDS'
+            })
+          );
         }
         res.end();
         break;
