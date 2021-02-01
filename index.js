@@ -19,12 +19,22 @@ const server = http
               secondItem: 'しゃぶしゃぶ'
             })
           );
-        } else if (req.url === '/enquetes/rice-bread') {
+        } 
+        else if (req.url === '/enquetes/rice-bread') {
           res.write(
             pug.renderFile('./form.pug', {
               path: req.url,
               firstItem: 'ごはん',
               secondItem: 'パン'
+            })
+          );
+        }
+        else if (req.url === '/enquetes/sushi-pizza') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: '寿司',
+              secondItem: 'ピザ'
             })
           );
         }
