@@ -1,5 +1,6 @@
 'use strict';
 const http = require('http');
+const { url } = require('inspector');
 const pug = require('pug');
 const server = http.createServer((req, res) => {
   const now = new Date();
@@ -21,6 +22,12 @@ const server = http.createServer((req, res) => {
           path: req.url,
           firstItem: 'ごはん',
           secondItem: 'パン'
+        }));
+      } else if (req.url === '/enquetes/sushi-pizza') {
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: '寿司',
+          secondItem: 'ピザ'
         }));
       }
       res.end();
