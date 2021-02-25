@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "けーさん <exceaz13cazie@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "pug": "^2.0.0-rc.4"
-  }
+  },
+  "repository": "git@github.com:Ksan1333/intro-curriculum-3015.git"
 }
