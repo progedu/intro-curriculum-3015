@@ -27,7 +27,14 @@ const server = http
               secondItem: 'パン'
             })
           );
-        }
+        } else if (req.url === '/enquetes/sushi-unagi'){
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: '寿司',
+              secondItem: 'にょろ助のうなぎ'
+        }));
+      }
         res.end();
         break;
       case 'POST':
